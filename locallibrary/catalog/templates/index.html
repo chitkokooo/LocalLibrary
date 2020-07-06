@@ -14,4 +14,10 @@
 	<li><b>Authors:</b> {{ num_authors }} </li>
 </ul>
 
+{% if num_visits %}
+	<p>You have visited this page {{ num_visits }} time{{num_visits|pluralize:"s"}}.</p>
+{% else %}
+	<p>You are visiting this page for the first time.</p>
+{% endif %}
+
 {% endblock %}
