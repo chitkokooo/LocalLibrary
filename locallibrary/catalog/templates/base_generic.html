@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
 	<meta charset="utf-8">
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Catalog | {% block title%}{% endblock %}</title>
-	<link rel="stylesheet" href="">
+	{% block title%}<title> Local Library </title>{% endblock %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<!-- Add additional CSS if static file -->
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-	{% block sidebar %} <!-- insert default navigation text for every page --> {% endblock %}
-	{% block content %} <!-- default content text (typically empty) --> {% endblock %}
+	<div class="container-fluid">
+	    <div class="row">
+	    	<div class="col-sm-2">
+	    	{% block sidebar %}
+	        <ul class="sidebar-nav">
+	          <li><a href="{% url 'index' %}">Home</a></li>
+	          <li><a href="">All books</a></li>
+	          <li><a href="">All authors</a></li>
+	        </ul>
+	    	{% endblock %}
+	    	</div>
+	    
+		    <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
+		</div>
+	</div>
 </body>
 </html>
