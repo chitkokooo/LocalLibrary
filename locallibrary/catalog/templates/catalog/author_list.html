@@ -3,14 +3,24 @@
 {% block content %}
 
 <h1> Author List </h1>
+<hr>
+{% if perms.catalog.can_mark_returned %}
+	<a href="{% url 'author_create' %}" class="text-info">Add New Author</a>
+{% endif %}
 {% if author_list %}
 <ul type="1">
 	{% for author in author_list %}
 	<li>
 		<a href="{% url 'author-detail' author.pk %}">
 			<b>{{ author.last_name }}, {{ author.first_name }}</b> 
-			( {{ author.date_of_birth }} - {{ author.date_of_death }} )
 		</a>
+			( {{ author.date_of_birth }} - {{ author.date_of_death }} )
+		{% if perms.catalog.can_mark_returned %}
+			[
+			<a href="{% url 'author_update' author.pk %}" class="text-warning"> Edit </a> |
+			<a href="{% url 'author_delete' author.pk %}" class="text-danger"> Delete </a>
+			]
+		{% endif %}
 	</li>
 	{% endfor %}
 </ul>
