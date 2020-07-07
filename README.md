@@ -7,9 +7,9 @@
 BootStrap CDN Link (`https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css`)
 
 
-[Original LocalLibrary Website Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+[Official MDN LocalLibrary Website Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
 
-[Original Project](https://github.com/mdn/django-locallibrary-tutorial)
+[MDN Official Project](https://github.com/mdn/django-locallibrary-tutorial)
 
 ![uml](resources/local_library_model_uml.png)
 
