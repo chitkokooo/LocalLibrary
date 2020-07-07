@@ -20,6 +20,9 @@ class BookAdmin(admin.ModelAdmin):
 class BookInstanceAdmin(admin.ModelAdmin):
 	list_filter = ('status', 'due_back')
 
+	# Challenge - yourself (1)
+	list_display = ('book', 'status', 'due_back', 'id')
+
 	fieldsets = (
 		(None, {
 			'fields': ('book', 'imprint', 'id')
@@ -29,8 +32,13 @@ class BookInstanceAdmin(admin.ModelAdmin):
 		}),
 	)
 
+# Challenge youself (2.1)
+class BookInline(admin.TabularInline):
+	model = Book
+
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
 	list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
 	fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+	inlines = [BookInline]  # Challenge yourself (2.2)
