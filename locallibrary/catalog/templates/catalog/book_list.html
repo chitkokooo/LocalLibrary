@@ -2,11 +2,22 @@
 
 {% block content %}
 <h1>Book List</h1>
+<hr>
+{% if perms.catalog.can_mark_returned %}
+	<a href="{% url 'book_create' %}" class='text-info'>Add new book</a>
+{% endif %}
+
 {% if book_list %}
 <ul>
 	{% for book in book_list %}
 	<li>
-		<a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
+		<a href="{{ book.get_absolute_url }}"><b>{{ book.title }}</b></a> ({{book.author}})
+		{% if perms.catalog.can_mark_returned %}
+			[
+			<a href="{% url 'book_update' book.id %}" class="text-warning"> Edit </a> |
+			<a href="{% url 'book_delete' book.id %}" class="text-danger"> Delete </a>
+			]
+		{% endif %}
 	</li>
 	{% endfor %}
 </ul>
