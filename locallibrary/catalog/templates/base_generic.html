@@ -15,20 +15,28 @@
 	    <div class="row">
 	    	<div class="col-sm-2">
 	    	{% block sidebar %}
-	        <ul class="sidebar-nav">
-	          <li><a href="{% url 'index' %}">Home</a></li>
-	          <li><a href="{% url 'books' %}">All books</a></li>
-	          <li><a href="{% url 'authors' %}">All authors</a></li>
-	        </ul>
-	        <ul class="sidebar-nav">
-	        	{% if user.is_authenticated %}
-	        	<li>User: {{ user.get_username }}</li>
-	        	<li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
-	        	<li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
-	        {% else %}
-	        	<li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-	        {% endif %}
-	        </ul>
+				<ul class="sidebar-nav">
+					<li><a href="{% url 'index' %}">Home</a></li>
+					<li><a href="{% url 'books' %}">All books</a></li>
+					<li><a href="{% url 'authors' %}">All authors</a></li>
+				</ul>
+				<ul class="sidebar-nav">
+					{% if user.is_authenticated %}
+					<li>User: {{ user.get_username }}</li>
+					<li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
+					<li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+				{% else %}
+					<li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+				{% endif %}
+				</ul>
+				
+				<!-- Challenge yourself -->
+				<ul class="sidebar-nav">
+					{% if perms.catalog.can_mark_returned %}
+					<li>Staff</li>
+					<li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+					{% endif %}
+				</ul>
 	    	{% endblock %}
 	    	</div>
 	    
