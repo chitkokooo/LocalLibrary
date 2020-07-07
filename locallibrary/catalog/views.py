@@ -20,12 +20,20 @@ def index(request):
 	num_visits = request.session.get('num_visits', 0)
 	request.session['num_visits'] = num_visits + 1
 
+	# Challenge yourself (2.1)
+	num_genre = Genre.objects.count()
+	grammer_books = Book.objects.filter(title__icontains='grammer').count()
+
 	context = {
 		'num_books': num_books,
 		'num_instances': num_instances,
 		'num_instances_available': num_instances_available,
 		'num_authors': num_authors,
 		'num_visits': num_visits,
+
+		# Challenge yourself (2.2)
+		'num_genre': num_genre,
+		'grammer_books': grammer_books,
 	}
 
 	# Render the HTML template index.html with the data in the context variable

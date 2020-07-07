@@ -1,5 +1,7 @@
 {% extends "base_generic.html" %}
 
+{% block title %} <title> Local Library | Home </title> {% endblock %} <!-- challenge yourself (1) -->
+
 {% block content %}
 
 <h1>Local Library Home</h1>
@@ -12,6 +14,10 @@
 	<li><b>Copies:</b> {{ num_instances }} </li>
 	<li><b>Copies available:</b> {{ num_instances_available }} </li>
 	<li><b>Authors:</b> {{ num_authors }} </li>
+
+	<!-- Challenge yourself (2.3) -->
+	<li><b>Genres:</b> {{ num_genre }}</li>
+	<li><b>Books about 'Grammer': </b> {{ grammer_books }}</li>
 </ul>
 
 {% if num_visits %}
