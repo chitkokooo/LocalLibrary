@@ -21,14 +21,14 @@ class BookInstanceAdmin(admin.ModelAdmin):
 	list_filter = ('status', 'due_back')
 
 	# Challenge - yourself (1)
-	list_display = ('book', 'status', 'due_back', 'id')
+	list_display = ('book', 'status', 'borrower', 'due_back', 'id')
 
 	fieldsets = (
 		(None, {
 			'fields': ('book', 'imprint', 'id')
 		}),
 		('Availability', {
-			'fields': ('status', 'due_back')
+			'fields': ('status', 'due_back', 'borrower')
 		}),
 	)
 

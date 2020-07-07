@@ -16,6 +16,12 @@
 	    	<div class="col-sm-2">
 	    	{% block sidebar %}
 	        <ul class="sidebar-nav">
+	        {% if user.is_authenticated %}
+	        	<li>User: {{ user.get_username }}</li>
+	        	<li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+	        {% else %}
+	        	<li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+	        {% endif %}
 	          <li><a href="{% url 'index' %}">Home</a></li>
 	          <li><a href="{% url 'books' %}">All books</a></li>
 	          <li><a href="{% url 'authors' %}">All authors</a></li>
