@@ -63,12 +63,14 @@ class BookDetailView(generic.DetailView):
 	model = Book
 
 
+# Challenge yourself (1)
 class AuthorListView(generic.ListView):
 	model = Author
 	context_object_name = 'author_list'
 	paginate_by = 10
 
 
+# Challenge yourself (2)
 class AuthorDetailView(generic.DetailView):
 	model = Author
 	context_object_name = 'author'
