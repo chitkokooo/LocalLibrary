@@ -26,5 +26,3 @@ class RenewBookFormTest(TestCase):
 		date = timezone.localtime() + datetime.timedelta(weeks=4)
 		form = RenewBokForm(data={'renewal_date': date})
 		self.assertTrue(form.is_valid())
-
-
