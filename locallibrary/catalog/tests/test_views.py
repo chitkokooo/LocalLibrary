@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from django.contrib.auth.decorators import permission_required
 # Required to assign User as a borrower
 # Required to grant the permission needed to set a book as returned.
 from django.contrib.auth.models import User, Permission
@@ -43,7 +44,7 @@ class AuthorListViewTest(TestCase):
 
 	def test_lists_all_authors(self):
 		# Get second page and confirm it has (exactly) remaining 3 items
-		response = self.client.get(reverse('authros')+'?page=2')
+		response = self.client.get(reverse('authors')+'?page=2')
 		self.assertEqual(response.status_code, 200)
 		self.assertTrue('is_paginated' in response.context)
 		self.assertTrue(response.context['is_paginated'] == True)
@@ -241,7 +242,7 @@ class RenewBookInstanceViewTest(TestCase):
 
 		# Create a BookInstance object for test_user2
 		return_date = datetime.date.today() + datetime.timedelta(days=5)
-		self.test_bookinstance2 = BookInstance.object.create(
+		self.test_bookinstance2 = BookInstance.objects.create(
 			book = test_book,
 			imprint = 'Unlikely Imprint, 2016',
 			due_back = return_date,
@@ -308,6 +309,6 @@ class RenewBookInstanceViewTest(TestCase):
 		invalid_date_in_future = datetime.date.today() + datetime.timedelta(weeks=5)
 		response = self.client.post(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}), {'renewal_date': invalid_date_in_future})
 		self.assertFormError(response, 'form', 'renewal_date', 'Invalid date - renewal more than 4 weeks ahead')
-	
+
 
 
