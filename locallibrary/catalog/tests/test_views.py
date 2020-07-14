@@ -247,9 +247,9 @@ class RenewBookInstanceViewTest(TestCase):
 			imprint = 'Unlikely Imprint, 2016',
 			due_back = return_date,
 			borrower = test_user2,
-			status = 'o'
+			status = 'o',
 		)
-
+		
 	def test_redirect_if_not_logged_in(self):
 		response = self.client.get(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}))
 		# Manually check redirect (Can't use assertRedirects, because the redirect URL is unpredictable)
@@ -297,14 +297,14 @@ class RenewBookInstanceViewTest(TestCase):
 		response = self.client.post(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk,}), {'renewal_date': valid_date_in_future})
 		self.assertRedirects(response, reverse('all-borrowed'))
 
-	def test_form_invalide_renewal_date_past(self):
+	def test_form_invalid_renewal_date_past(self):
 		login = self.client.login(username="testuser2", password="2HJ1vRV0Z&3iD")
 		date_in_past = datetime.date.today() - datetime.timedelta(weeks=1)
 		response = self.client.post(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}), {'renewal_date': date_in_past})
 		self.assertEqual(response.status_code, 200)
-		self.assertFormError(response, 'form', 'renew_date', 'Invalide date - renewal in past')
+		self.assertFormError(response, 'form', 'renewal_date', 'Invalid date - renewal in past')
 
-	def test_form_invalide_renewal_date_future(self):
+	def test_form_invalid_renewal_date_future(self):
 		login = self.client.login(username="testuser2", password="2HJ1vRV0Z&3iD")
 		invalid_date_in_future = datetime.date.today() + datetime.timedelta(weeks=5)
 		response = self.client.post(reverse('renew-book-librarian', kwargs={'pk': self.test_bookinstance1.pk}), {'renewal_date': invalid_date_in_future})
