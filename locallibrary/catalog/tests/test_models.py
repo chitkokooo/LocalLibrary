@@ -41,7 +41,7 @@ class AuthorModelTest(TestCase):
 	def test_date_of_death_label(self):
 		author = Author.objects.get(id=1)
 		field_label = author._meta.get_field('date_of_death').verbose_name
-		self.assertEquals(field_label, 'died')
+		self.assertEquals(field_label, 'Died')
 
 	def test_first_name_max_length(self):
 		author = Author.objects.get(id=1)
@@ -56,5 +56,5 @@ class AuthorModelTest(TestCase):
 	def test_get_absolute_url(self):
 		author = Author.objects.get(id=1)
 		# This will also fail if the urlconf is not defined.
-		self.assertEquals(author.get_absolute_url(), '/catalog/author/1')
+		self.assertEquals(author.get_absolute_url(), '/catalog/author/1/')
 
