@@ -1,5 +1,7 @@
 {% extends "base_generic.html" %}
 
+{% block title %} <title> Local Library | Book Renew </title> {% endblock %}
+
 {% block content %}
 	<h1>Renew: {{ book_instance.book.title }}</h1>
 	<p>Borrower: {{ book_instance.borrower }}</p>

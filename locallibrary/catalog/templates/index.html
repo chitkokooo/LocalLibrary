@@ -7,18 +7,18 @@
 <h1>Local Library Home</h1>
 <p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
 <hr>
-<h2>Dynamic content</h2>
+<h3>Dynamic content</h3>
 <p>The library has the following record counts:</p>
 
 <ul>
-	<li><b>Books:</b> {{ num_books }} </li>
-	<li><b>Copies:</b> {{ num_instances }} </li>
-	<li><b>Copies available:</b> {{ num_instances_available }} </li>
-	<li><b>Authors:</b> {{ num_authors }} </li>
+	<li><b>Books:</b> <span class="badge badge-primary">{{ num_books }}</span></li>
+	<li><b>Copies:</b> <span class="badge badge-primary">{{ num_instances }}</span></li>
+	<li><b>Copies available:</b> <span class="badge badge-primary">{{ num_instances_available }}</span></li>
+	<li><b>Authors:</b> <span class="badge badge-primary">{{ num_authors }}</span></li>
 
 	<!-- Challenge yourself (2.3) -->
-	<li><b>Genres:</b> {{ num_genre }}</li>
-	<li><b>Books about 'Grammer': </b> {{ grammer_books }}</li>
+	<li><b>Genres:</b> <span class="badge badge-primary">{{ num_genre }}</span></li>
+	<li><b>Books about 'Grammer': </b> <span class="badge badge-primary">{{ grammer_books }}</span></li>
 </ul>
 
 {% if num_visits %}

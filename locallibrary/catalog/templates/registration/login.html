@@ -1,7 +1,9 @@
 {% extends 'base_generic.html' %}
 
+{% block title %} <title> Local Library | Login </title> {% endblock %}
 {% block content %}
 	<h1>Login Local Library</h1>
+	<p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
 	<hr>
 	{% if form.errors %}
 		<p>Your username and password didn't match. Please try again.</p>
