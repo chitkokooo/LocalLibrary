@@ -6,23 +6,44 @@
 <h1>Book List</h1>
 <hr>
 {% if perms.catalog.can_mark_returned %}
-	<a href="{% url 'book_create' %}" class='text-info'>Add new book</a>
+	<a href="{% url 'book_create' %}" class='btn btn-info'>Add new book</a>
 {% endif %}
 
 {% if book_list %}
-<ul>
-	{% for book in book_list %}
-	<li>
-		<a href="{{ book.get_absolute_url }}"><b>{{ book.title }}</b></a> ({{book.author}})
-		{% if perms.catalog.can_mark_returned %}
-			[
-			<a href="{% url 'book_update' book.id %}" class="text-warning"> Edit </a> |
-			<a href="{% url 'book_delete' book.id %}" class="text-danger"> Delete </a>
-			]
-		{% endif %}
-	</li>
-	{% endfor %}
-</ul>
+	<table class="table table-stripped table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Title</th>
+				<th>Author</th>
+				{% if perms.catalog.can_mark_return %}
+				<th>Edit</th>
+				<th>Delete</th>
+				{% endif %}
+			</tr>
+		</thead>
+		{% for book in book_list %}
+		<tbody>
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>
+					<a href="{{ book.get_absolute_url }}"><b>{{ book.title }}</b></a>
+				</td>
+				<td>
+					{{book.author}}
+				</td>
+				{% if perms.catalog.can_mark_returned %}
+					<td>
+						<a href="{% url 'book_update' book.id %}" class="btn btn-warning"> Edit </a>
+					</td>
+					<td>
+						<a href="{% url 'book_delete' book.id %}" class="btn btn-danger"> Delete </a>
+					</td>
+				{% endif %}
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
 {% else %}
 	<p>There are no books in the library.</p>
 {% endif %}

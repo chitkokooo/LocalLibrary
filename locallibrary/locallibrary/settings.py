@@ -121,6 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = 'static-files/'
+
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.email.backends.console.EmailBackend'

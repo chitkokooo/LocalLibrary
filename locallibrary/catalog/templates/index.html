@@ -10,16 +10,35 @@
 <h3>Dynamic content</h3>
 <p>The library has the following record counts:</p>
 
-<ul>
-	<li><b>Books:</b> <span class="badge badge-primary">{{ num_books }}</span></li>
-	<li><b>Copies:</b> <span class="badge badge-primary">{{ num_instances }}</span></li>
-	<li><b>Copies available:</b> <span class="badge badge-primary">{{ num_instances_available }}</span></li>
-	<li><b>Authors:</b> <span class="badge badge-primary">{{ num_authors }}</span></li>
-
-	<!-- Challenge yourself (2.3) -->
-	<li><b>Genres:</b> <span class="badge badge-primary">{{ num_genre }}</span></li>
-	<li><b>Books about 'Grammer': </b> <span class="badge badge-primary">{{ grammer_books }}</span></li>
-</ul>
+<table class="table table-hover table-striped table-bordered">
+	<tbody>
+		<tr>
+			<td><b>Books:</b></td>
+			<td><span class="badge badge-primary">{{ num_books }}</span></td>
+		</tr>
+		<tr>
+			<td><b>Copies:</b></td>
+			<td><span class="badge badge-primary">{{ num_instances }}</span></td>
+		</tr>
+		<tr>
+			<td><b>Copies available:</b></td>
+			<td><span class="badge badge-primary">{{ num_instances_available }}</span></td>
+		</tr>
+		<tr>
+			<td><b>Authors:</b></td>
+			<td><span class="badge badge-primary">{{ num_authors }}</span></td>
+		</tr>
+		<!-- Challenge yourself (2.3) -->
+		<tr>
+			<td><b>Genres:</b></td>
+			<td><span class="badge badge-primary">{{ num_genre }}</span></td>
+		</tr>
+		<tr>
+			<td><b>Books about 'Grammer': </b></td>
+			<td><span class="badge badge-primary">{{ grammer_books }}</span></td>
+		</tr>
+	</tbody>
+</table>
 
 {% if num_visits %}
 	<p>You have visited this page {{ num_visits }} time{{num_visits|pluralize:"s"}}.</p>
