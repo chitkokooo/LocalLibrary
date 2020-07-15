@@ -34,21 +34,21 @@ BootStrap CDN Link (`https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/boot
 ## Screenshots ##
 
 ![1](resources/1_home_page.png)
-
+Home Page
 ![2](resources/2_login_page.png)
-
+Login Page
 ![3](resources/3_book_list.png)
-
-![4](resources/4 add_new_book.png)
-
+Book List
+![4](resources/4_add_new_book.png)
+Add New Book
 ![5](resources/5_author_list.png)
-
+Author List
 ![6](resources/6_add_new_author.png)
-
+Add New Author
 ![7](resources/7_borrowed_books.png)
-
+All Borrowed Books
 ![8](resources/8_renew_borrow_book.png)
-
+Renew Borrowed Book
 
 ## About Me ##
 
