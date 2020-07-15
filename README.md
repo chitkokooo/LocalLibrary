@@ -31,6 +31,18 @@ BootStrap CDN Link (`https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/boot
 `password: locallibrary`
 
 
+## Screenshots ##
+
+![1](resources/1 home page.png)
+![2](resources/2 login page.png)
+![3](resources/3 book list.png)
+![4](resources/4 add new book.png)
+![5](resources/5 author list.png)
+![6](resources/6 add new author.png)
+![7](resources/7 borrowed books.png)
+![8](resources/8 renew borrow books.png)
+
+
 ## About Me ##
 
 [LinkedIn](https://www.linkedin.com/in/chitkokooo-cu/)
