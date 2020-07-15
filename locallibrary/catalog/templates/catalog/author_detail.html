@@ -13,6 +13,6 @@
 		<p>{{ book.summary }}</p>
 	{% endfor %}
 {% else %}
-	<p>Author does not have book yet right now.</p>
+	<p>Author does not have book yet right now.<a href="{% url 'book_create' %}"> Create new one.</a></p>
 {% endif %}
 {% endblock %}
