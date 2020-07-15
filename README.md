@@ -1,6 +1,6 @@
 # Django Tutorial: The Local Library website #
 
-#### This project is a tutorial of MDN website and I have successfully study and code myself. You are welcome to check my code, and you can also find original tutorial and git source in the following links. ####
+#### This project is a original Django tutorial of MDN website and I have successfully studied and code myself. You are welcome to check my code. Moreover you can also find original tutorial and git source in the Resources section. ####
 
 ## Installation and Running ##
 
