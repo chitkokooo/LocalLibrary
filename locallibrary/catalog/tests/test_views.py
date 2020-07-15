@@ -290,6 +290,10 @@ class AuthorCreateViewTest(TestCase):
 		chitko.user_permissions.add(permission)
 		chitko.save()
 	
+	def test_redirect_if_not_login(self):
+		response = self.client.get(reverse('author_create'))
+		self.assertRedirects(response, '/accounts/login/?next=/catalog/author/create/')
+
 	def test_user_does_not_have_access_to_create_author(self):
 		login = self.client.login(username="naychi", password="locallibrary")
 		response = self.client.get(reverse('author_create'))
@@ -318,4 +322,3 @@ class AuthorCreateViewTest(TestCase):
 		response = self.client.post(reverse('author_create'), {'first_name': 'Chit Ko', 'last_name': 'Ko Oo'})
 		self.assertEqual(response.status_code, 302)
 		self.assertTrue(response.url.startswith('/catalog/author/'))
-		
