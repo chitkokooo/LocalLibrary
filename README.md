@@ -1,5 +1,18 @@
 # Django Tutorial: The Local Library website #
 
+#### This project is a tutorial of MDN website and I have successfully study and code myself. You are welcome to check my code, and you can also find original tutorial and git source in the following links. ####
+
+## Installation and Running ##
+
+- Open terminal and run `https://github.com/chitkokooo/LocalLibrary.git`
+- `cd LocalLibrary\locallibrary` in Windows (or) `cd LocalLibrary/locallibrary` in GNU/Linux
+- `python manage.py makemigrations`
+- `python manage.py migrate`
+- `python manage.py collectstatic`
+- `python manage.py runserver`
+- Open `http://127.0.0.1:8000` in web browser
+
+
 ## Resources ##
 
 [Python](https://www.python.org) | [Django](https://www.djangoproject.com) | [Bootstrap](https://getbootstrap.com)
@@ -12,6 +25,7 @@ BootStrap CDN Link (`https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/boot
 [MDN Official Project](https://github.com/mdn/django-locallibrary-tutorial)
 
 ![uml](resources/local_library_model_uml.png)
+
 
 ## Users ##
 
@@ -49,6 +63,7 @@ Add New Author
 All Borrowed Books
 ![8](resources/8_renew_borrow_book.png)
 Renew Borrowed Book
+
 
 ## About Me ##
 
