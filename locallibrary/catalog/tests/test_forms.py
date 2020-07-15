@@ -5,7 +5,6 @@ from django.utils import timezone
 
 from catalog.forms import RenewBookForm
 
-# Create your forms here
 class RenewBookFormTest(TestCase):
 	def test_renew_form_date_field_label(self):
 		form = RenewBookForm()

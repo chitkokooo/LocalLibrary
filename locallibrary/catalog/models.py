@@ -34,6 +34,11 @@ class Genre(models.Model):
 		return self.name
 
 
+# Challenge yourself
+class Language(models.Model):
+	name = models.CharField(max_length=100, default="English", help_text='Enter written language of book')
+
+
 class Book(models.Model):
 	"""Model representing a book (but not a specific copy of a book)."""
 	title = models.CharField(max_length=200)
@@ -43,7 +48,7 @@ class Book(models.Model):
 	author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
 
 	# Language Model - Challenge
-	language = models.CharField(max_length=100, default="English", help_text='Enter written language of book')
+	language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, help_text='Choose written language of book')
 
 	summary = models.TextField(max_length=1000, help_text='Enter a brief description of the book')
 	isbn = models.CharField('ISBN', max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
@@ -111,7 +116,7 @@ class Author(models.Model):
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
 	date_of_birth = models.DateField(null=True, blank=True)
-	date_of_death = models.DateField('Died', null=True, blank=True)
+	date_of_death = models.DateField('died', null=True, blank=True)
 
 	class Meta:
 		ordering = ['last_name', 'first_name']
