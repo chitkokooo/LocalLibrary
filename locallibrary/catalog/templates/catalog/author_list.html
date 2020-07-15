@@ -7,25 +7,48 @@
 <h1> Author List </h1>
 <hr>
 {% if perms.catalog.can_mark_returned %}
-	<a href="{% url 'author_create' %}" class="text-info">Add New Author</a>
+<div class="text-right add-new-item">
+	<a href="{% url 'author_create' %}" class="btn btn-info">Add New Author</a>
+</div>
 {% endif %}
+
 {% if author_list %}
-<ul type="1">
-	{% for author in author_list %}
-	<li>
-		<a href="{% url 'author-detail' author.pk %}">
-			<b>{{ author.last_name }}, {{ author.first_name }}</b> 
-		</a>
-			( {{ author.date_of_birth }} - {{ author.date_of_death }} )
-		{% if perms.catalog.can_mark_returned %}
-			[
-			<a href="{% url 'author_update' author.pk %}" class="text-warning"> Edit </a> |
-			<a href="{% url 'author_delete' author.pk %}" class="text-danger"> Delete </a>
-			]
-		{% endif %}
-	</li>
-	{% endfor %}
-</ul>
+<table class="table table-stripped table-hover">
+	<thead>
+		<tr class="thead-dark">
+			<th>#</th>
+			<th>Author Name</th>
+			<th>Years</th>
+			{% if perms.catalog.can_mark_returned %}
+			<th>Edit</th>
+			<th>Delete</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for author in author_list %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>
+				<a href="{% url 'author-detail' author.pk %}">
+					<b>{{ author.last_name }}, {{ author.first_name }}</b> 
+				</a>
+			</td>
+			<td>
+				{{ author.date_of_birth }} - {{ author.date_of_death }}
+			</td>
+			{% if perms.catalog.can_mark_returned %}
+			<td>
+				<a href="{% url 'author_update' author.pk %}" class="btn btn-warning"> Edit </a>
+			</td>
+			<td>
+				<a href="{% url 'author_delete' author.pk %}" class="btn btn-danger"> Delete </a>
+			</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
 {% else %}
 	<p>There is no author.</p>
 {% endif %}

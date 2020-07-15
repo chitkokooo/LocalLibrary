@@ -4,20 +4,36 @@
 
 {% block content %}
 
-<h1>Title: {{ book.title }}</h1>
+<h2>Title: {{ book.title }}</h2>
 
-<p><strong>Author: </strong><a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p>
-<p><strong>Summary: </strong>{{ book.summary }}</p>
-<p><strong>ISBN: </strong>{{ book.isbn }}</p>
-<p><strong>Language: </strong>{{ book.language }}</p>
-<p><strong>Genre: </strong>{{ book.genre.all|join:", " }}</p>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th>Author</th>
+			<th>Summary</th>
+			<th>ISBN</th>
+			<th>Language</th>
+			<th>Genre</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></td>
+			<td>{{ book.summary }}</td>
+			<td>{{ book.isbn }}</td>
+			<td>{{ book.language }}</td>
+			<td>{{ book.genre.all|join:", " }}</td>
+		</tr>
+	</tbody>
+</table>
 
-<div style="margin-left:20px;margin-top:20px">
+<div style="margin-left:50px;margin-top:20px">
 	<h4>Copies</h4>
 
 	{% for copy in book.bookinstance_set.all %}
 	<hr>
-	<p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+	<b>{{ forloop.counter }}</b>
+	<p class=" badge {% if copy.status == 'a' %}badge-success{% elif copy.status == 'm' %}badge-danger{% else %}badge-warning{% endif %}">
 		{{ copy.get_status_display }}
 	</p>
 	{% if copy.status != 'a' %}

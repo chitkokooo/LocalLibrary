@@ -3,15 +3,15 @@
 {% block title %} <title> Local Library | Home </title> {% endblock %} <!-- challenge yourself (1) -->
 
 {% block content %}
-
-<h1>Local Library Home</h1>
-<p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
-<hr>
-<h3>Dynamic content</h3>
+<h2>Dynamic content</h2>
 <p>The library has the following record counts:</p>
 
 <table class="table table-hover table-striped table-bordered">
 	<tbody>
+		<tr class="thead-dark">
+			<th>Type</th>
+			<th>Count</p>
+		</tr>
 		<tr>
 			<td><b>Books:</b></td>
 			<td><span class="badge badge-primary">{{ num_books }}</span></td>

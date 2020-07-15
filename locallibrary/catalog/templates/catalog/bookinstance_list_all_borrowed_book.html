@@ -8,17 +8,35 @@
 	<h1>All Borrowed Books</h1>
 	<hr>
 	{% if bookinstance_list %}
-		<ul>
+	<table class="table table-stripped table-hover">
+		<thead>
+			<tr class="thead-dark">
+				<th>#</th>
+				<th>Book Title</th>
+				<th>Renewal Date</th>
+				<th>Borrower</th>
+				{% if perms.catalog.can_mark_returned %}
+				<th>Renew</th>
+				{% endif %}
+			</tr>
+		</thead>
+		<tbody>
 			{% for bookinst in bookinstance_list %}
-				<li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-					<a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> ({{ bookinst.due_back }}) - {{ bookinst.borrower }} 
-					{% if perms.catalog.can_mark_returned %} - 
-					<a href="{% url 'renew-book-librarian' bookinst.id %}">[ Renew ]</a>
-					{% endif %}
-				</li>
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+					<a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a>
+				</td>
+				<td>{{ bookinst.due_back }}</td>
+				<td>{{ bookinst.borrower }}</td>
+				{% if perms.catalog.can_mark_returned %}
+				<td><a href="{% url 'renew-book-librarian' bookinst.id %}" class="btn btn-secondary"> Renew </a></td>
+				{% endif %}
+			</tr>
 			{% endfor %}
-		</ul>
+		</tbody>
+	</table>
 	{% else %}
-		
+		There is no borrowed book right now.
 	{% endif %}
 {% endblock content %}

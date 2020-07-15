@@ -3,8 +3,8 @@
 {% block title %} <title> Local Library | Author Detail </title> {% endblock %}
 
 {% block content %}
-<h1> Author: {{ author.last_name }}, {{ author.first_name }}</h1>
-<p> {{ author.date_of_birth }} - {% if author.date_of_death %} {{ author.date_of_death }} {% endif %}</p>
+<h2> Author: {{ author.last_name }}, {{ author.first_name }}</h2>
+<p class="badge badge-dark"> {{ author.date_of_birth }} - {% if author.date_of_death %} {{ author.date_of_death }} {% endif %}</p>
 
 <h4>Books</h4>
 {% if author_books %}
@@ -13,6 +13,10 @@
 		<p>{{ book.summary }}</p>
 	{% endfor %}
 {% else %}
-	<p>Author does not have book yet right now.<a href="{% url 'book_create' %}"> Create new one.</a></p>
+	<p class="text-danger">Author does not have book yet right now.
+		{% if perms.catalog.can_mark_returned %}
+			<a href="{% url 'book_create' %}" class="btn btn-primary"> Create new one.</a>
+		{% endif %}
+	</p>
 {% endif %}
 {% endblock %}

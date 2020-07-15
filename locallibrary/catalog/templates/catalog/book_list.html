@@ -6,15 +6,17 @@
 <h1>Book List</h1>
 <hr>
 {% if perms.catalog.can_mark_returned %}
+<div class="add-new-item text-right">
 	<a href="{% url 'book_create' %}" class='btn btn-info'>Add new book</a>
+</div>
 {% endif %}
 
 {% if book_list %}
 	<table class="table table-stripped table-hover">
 		<thead>
-			<tr>
+			<tr class="thead-dark">
 				<th>#</th>
-				<th>Title</th>
+				<th>Book Title</th>
 				<th>Author</th>
 				{% if perms.catalog.can_mark_return %}
 				<th>Edit</th>
