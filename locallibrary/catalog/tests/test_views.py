@@ -165,43 +165,11 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
 					last_date = book.due_back
 
 
-""" Testing views with form """
-
-@permission_required('catalog.can_mark_returned')
-def renew_book_librarian(request, pk):
-	"""View function for renewing a specific BookInstance by librarian."""
-	book_instance = genre_objects_or_404(BookInstance, pk=pk)
-
-	# If this is a POST request then process the Form data
-	if request.method == 'POST':
-		# Create a form instance and populate it with data from the request (binding):
-		book_renewal_form = RenewBookForm(request.POST)
-
-		# Check if the form is valid:
-		if form.is_valid():
-			# process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-			book_instance.due_back = form.cleaned_data['renew_date']
-			book_instance.save()
-
-			# redirect to a new URL:
-			return HttpResponseRedirect(reverse('all-borrowed'))
-
-	# If this is a GET (or any other method) create the default form
-	else:
-		proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
-		book_renewal_form = RenewBookForm(initial={'renewal_date': proposed_renewal_date})
-
-	context = {
-		'book_renewal_form': book_renewal_form,
-		'book_instance': book_instance,
-	}
-
-	return render(request, 'catalog/book_renew_librarian.html', context)
-
+""" ----------------------- Testing views with form ----------------------- """
 
 class RenewBookInstanceViewTest(TestCase):
 	def setUp(self):
-		# Create a user
+		# Create two users
 		test_user1 = User.objects.create_user(username="testuser1", password="1X<ISRUkw+tuK")
 		test_user2 = User.objects.create_user(username="testuser2", password="2HJ1vRV0Z&3iD")
 		test_user1.save()
@@ -214,13 +182,13 @@ class RenewBookInstanceViewTest(TestCase):
 		# Create a book
 		test_author = Author.objects.create(first_name="John", last_name="Smith")
 		test_genre = Genre.objects.create(name="Fantasy")
-		# test_language = Language.objects.create(name='English')
+		test_language = Language.objects.create(name='English')
 		test_book = Book.objects.create(
 			title = "Book Title",
 			summary = "My book summary",
 			isbn = 'ABCDEFG',
 			author = test_author,
-			# language = test_language, 
+			language = test_language, 
 		)
 
 		# Create genre as a post-step
@@ -309,4 +277,45 @@ class RenewBookInstanceViewTest(TestCase):
 		self.assertFormError(response, 'form', 'renewal_date', 'Invalid date - renewal more than 4 weeks ahead')
 
 
+""" ------- Challenge yourself - Author Create Test --------------------- """
+class AuthorCreateViewTest(TestCase):
 
+	def setUp(self):
+		chitko = User.objects.create_user(username="chitko", password="locallibrary")
+		naychi = User.objects.create_user(username="naychi", password="locallibrary")
+		chitko.save()
+		naychi.save()
+
+		permission = Permission.objects.get(name="Set book as returned")
+		chitko.user_permissions.add(permission)
+		chitko.save()
+	
+	def test_user_does_not_have_access_to_create_author(self):
+		login = self.client.login(username="naychi", password="locallibrary")
+		response = self.client.get(reverse('author_create'))
+		self.assertEqual(response.status_code, 403)
+
+	def test_user_has_access_to_create_author(self):
+		login = self.client.login(username="chitko", password="locallibrary")
+		response = self.client.get(reverse('author_create'))
+		self.assertEqual(response.status_code, 200)
+
+	def test_initial_date_of_death(self):
+		login = self.client.login(username="chitko", password="locallibrary")
+		response = self.client.get(reverse('author_create'))
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.context['form'].initial['date_of_death'], '05/01/2018')
+
+	def test_uses_correct_template(self):
+		login = self.client.login(username="chitko", password="locallibrary")
+		response = self.client.get(reverse('author_create'))
+		self.assertEqual(response.status_code, 200)
+		self.assertTemplateUsed(response, 'catalog/author_form.html')
+
+	def test_redirect_on_successfully_create_author(self):
+		login = self.client.login(username="chitko", password="locallibrary")
+		# response = self.client.get(reverse('author_create'))
+		response = self.client.post(reverse('author_create'), {'first_name': 'Chit Ko', 'last_name': 'Ko Oo'})
+		self.assertEqual(response.status_code, 302)
+		self.assertTrue(response.url.startswith('/catalog/author/'))
+		
