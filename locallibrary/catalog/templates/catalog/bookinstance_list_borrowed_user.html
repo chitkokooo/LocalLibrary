@@ -3,7 +3,7 @@
 {% block title %} <title> Local Library | Book Instance list borrowed</title> {% endblock %}
 
 {% block content %}
-	<h1>Borrowed books</h1>
+	<h2>Borrowed books</h2>
 	<hr>
 	{% if bookinstance_list %}
 		<table class="table table-stripped table-hover">
@@ -33,6 +33,6 @@
 		</tbody>
 	</table>
 	{% else %}
-		<p>There are no books borrowed.</p>	
+		<p class="text-danger">There are no books borrowed.</p>	
 	{% endif %}
 {% endblock content %}

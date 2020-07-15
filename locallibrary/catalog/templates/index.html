@@ -3,7 +3,10 @@
 {% block title %} <title> Local Library | Home </title> {% endblock %} <!-- challenge yourself (1) -->
 
 {% block content %}
-<h2>Dynamic content</h2>
+
+
+
+<h3>Dynamic content</h3>
 <p>The library has the following record counts:</p>
 
 <table class="table table-hover table-striped table-bordered">
@@ -41,9 +44,9 @@
 </table>
 
 {% if num_visits %}
-	<p>You have visited this page {{ num_visits }} time{{num_visits|pluralize:"s"}}.</p>
+	<p class="text-center">You have visited this page {{ num_visits }} time{{num_visits|pluralize:"s"}}.</p>
 {% else %}
-	<p>You are visiting this page for the first time.</p>
+	<p class="text-center">You are visiting this page for the first time.</p>
 {% endif %}
 
 {% endblock %}

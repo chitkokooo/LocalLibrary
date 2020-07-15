@@ -5,12 +5,13 @@
 {% block content %}
 <h2> Author: {{ author.last_name }}, {{ author.first_name }}</h2>
 <p class="badge badge-dark"> {{ author.date_of_birth }} - {% if author.date_of_death %} {{ author.date_of_death }} {% endif %}</p>
-
+<hr>
 <h4>Books</h4>
 {% if author_books %}
 	{% for book in author_books %}
 		<p><a href="{% url 'book-detail' book.id %}"><b>{{ book.title }}</b></a></p>
 		<p>{{ book.summary }}</p>
+		<hr>
 	{% endfor %}
 {% else %}
 	<p class="text-danger">Author does not have book yet right now.

@@ -3,9 +3,10 @@
 {% block title %} <title> Local Library | Book Renew </title> {% endblock %}
 
 {% block content %}
-	<h1>Renew: {{ book_instance.book.title }}</h1>
-	<p>Borrower: {{ book_instance.borrower }}</p>
-	<p {% if book_instance.is_overdue %} class="text-danger" {% endif %}>Due date: {{ book_instance.due_back }}</p>
+	<h2>Renew: {{ book_instance.book.title }}</h2>
+	<hr>
+	<p><span class="badge badge-dark">Borrower:</span> {{ book_instance.borrower }}</p>
+	<p {% if book_instance.is_overdue %} class="text-danger" {% endif %}><span class="badge badge-dark">Due date:</span> {{ book_instance.due_back }}</p>
 
 	<form action="" method="POST">
 		{% csrf_token %}

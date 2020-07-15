@@ -2,18 +2,18 @@
 
 {% block title %} <title> Local Library | Login </title> {% endblock %}
 {% block content %}
-	<h1>Login Local Library</h1>
+	<h2>Login Local Library</h2>
 	<p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
 	<hr>
 	{% if form.errors %}
-		<p>Your username and password didn't match. Please try again.</p>
+		<p class="text-danger">Your username and password didn't match. Please try again.</p>
 	{% endif %}
 
 	{% if next %}
 		{% if user.is_authenticated %}
-			<p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+			<p class="text-danger">Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
 		{% else %}
-			<p>Please login to see this page.</p>
+			<p><b>Please login to see this page.</b></p>
 		{% endif %}
 	{% endif %}
 
@@ -29,9 +29,9 @@
 				<td>{{ form.password }}</td>
 			</tr>
 		</table>
-		<input type="submit" value="login" />
+		<input class="btn btn-primary" type="submit" value="login" />
 		<input type="hidden" name="next" value="{{ next }}" />
 	</form>
 
-	<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+	<p><a href="{% url 'password_reset' %}" class="badge">Lost password?</a></p>
 {% endblock %}

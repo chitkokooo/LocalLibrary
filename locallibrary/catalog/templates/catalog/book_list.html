@@ -3,7 +3,7 @@
 {% block title %} <title> Local Library | All Books </title> {% endblock %}
 
 {% block content %}
-<h1>Book List</h1>
+<h2>Book List</h2>
 <hr>
 {% if perms.catalog.can_mark_returned %}
 <div class="add-new-item text-right">
@@ -47,6 +47,6 @@
 		{% endfor %}
 	</table>
 {% else %}
-	<p>There are no books in the library.</p>
+	<p class="text-danger">There are no books in the library.</p>
 {% endif %}
 {% endblock %}

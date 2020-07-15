@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1> Author List </h1>
+<h2> Author List </h2>
 <hr>
 {% if perms.catalog.can_mark_returned %}
 <div class="text-right add-new-item">
@@ -50,7 +50,7 @@
 	</tbody>
 </table>
 {% else %}
-	<p>There is no author.</p>
+	<p class="text-danger">There is no author.</p>
 {% endif %}
 
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block title %} <title> Local Library | All Instance list borrowed by all users </title> {% endblock %}
 
 {% block content %}
-	<h1>All Borrowed Books</h1>
+	<h2>All Borrowed Books</h2>
 	<hr>
 	{% if bookinstance_list %}
 	<table class="table table-stripped table-hover">
@@ -37,6 +37,6 @@
 		</tbody>
 	</table>
 	{% else %}
-		There is no borrowed book right now.
+		<p class="text-danger">There is no borrowed book right now.</p>
 	{% endif %}
 {% endblock content %}

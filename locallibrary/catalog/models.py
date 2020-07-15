@@ -38,6 +38,9 @@ class Genre(models.Model):
 class Language(models.Model):
 	name = models.CharField(max_length=100, default="English", help_text='Enter written language of book')
 
+	def __str__(self):
+		return self.name
+
 
 class Book(models.Model):
 	"""Model representing a book (but not a specific copy of a book)."""
