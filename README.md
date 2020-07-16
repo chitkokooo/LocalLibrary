@@ -63,7 +63,7 @@ Add New Author
 All Borrowed Books
 ![8](resources/8_renew_borrow_book.png)
 Renew Borrowed Book
-![9](resouces/9_book_detail.png)
+![9](resources/9_book_detail.png)
 Book Detail
 ![10](resources/10_author_detail.png)
 Author Detail
