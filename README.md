@@ -33,11 +33,11 @@ BootStrap CDN Link (`https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/boot
 `username: admin`
 `password: admin`
 
-### Librarians ###
+### Librarian ###
 `username: librarian`
 `password: locallibrary`
 
-### Library Member ###
+### Library Members ###
 `username: chitko`
 `password: locallibrary`
 
