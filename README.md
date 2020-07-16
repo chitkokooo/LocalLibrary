@@ -4,7 +4,7 @@
 
 ## Installation and Running ##
 
-- Open terminal and run `https://github.com/chitkokooo/LocalLibrary.git`
+- Open terminal and run `git clone https://github.com/chitkokooo/LocalLibrary.git`
 - `cd LocalLibrary\locallibrary` in Windows (or) `cd LocalLibrary/locallibrary` in GNU/Linux
 - `python manage.py makemigrations`
 - `python manage.py migrate`
