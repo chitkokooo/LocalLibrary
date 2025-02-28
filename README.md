@@ -10,7 +10,7 @@
 - `python manage.py migrate`
 - `python manage.py collectstatic`
 - `python manage.py runserver`
-- Open `http://127.0.0.1:8000` in web browser
+- Open `http://127.0.0.1:8000` in a web browser
 
 
 ## Resources ##
